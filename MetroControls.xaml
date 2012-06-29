@@ -1,0 +1,259 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="Colorizer">#FF006400</Color>
+  <Color x:Key="ColorizerTransparent">#28006400</Color>
+  <Color x:Key="BaseButton">#FF666666</Color>
+  <Color x:Key="ButtonBackground">#FFD8D8D8</Color>
+  <Color x:Key="ButtonBackgroundMouseOver">#FFBBBBBB</Color>
+  <Color x:Key="ButtonBackgroundMouseDown">#FF999999</Color>
+  <Color x:Key="ButtonBackgroundMouseOverDefault">#FF008000</Color>
+  <Color x:Key="ButtonBackgroundMouseDownDefault">#FF009900</Color>
+  <Color x:Key="Text">#CC000000</Color>
+  <Color x:Key="WindowBorder">#FF666666</Color>
+  <SolidColorBrush x:Key="WindowBorderBrush" Color="{StaticResource WindowBorder}" />
+
+  <Style x:Key="MinimizeButton" TargetType="{x:Type Button}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border x:Name="ButtonBorder" BorderThickness="0" RenderTransformOrigin="0.5,0.5" Width="16" Height="16"
+                  Background="White">
+            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                              Opacity=".6">
+              <ContentPresenter.Content>
+                <Rectangle Width="10" Height="3" Fill="{StaticResource WindowBorderBrush}" />
+              </ContentPresenter.Content>
+            </ContentPresenter>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Opacity" TargetName="ButtonContentPresenter">
+                    <DoubleAnimation To="1.0" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Opacity" TargetName="ButtonContentPresenter">
+                    <DoubleAnimation To=".6" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter Property="RenderTransform" TargetName="ButtonBorder">
+                <Setter.Value>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                  </TransformGroup>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border x:Name="ButtonBorder" BorderThickness="0" RenderTransformOrigin="0.5,0.5" Width="16" Height="16"
+                  Background="White">
+            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                              Opacity=".6" Margin="2,2,2,0">
+              <ContentPresenter.Content>
+                <Path Data="M0,0 L1,1 M0,1 L1,0" Stretch="Uniform"
+                      Stroke="{StaticResource WindowBorderBrush}" StrokeThickness="3" />
+              </ContentPresenter.Content>
+            </ContentPresenter>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Opacity" TargetName="ButtonContentPresenter">
+                    <DoubleAnimation To="1.0" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Opacity" TargetName="ButtonContentPresenter">
+                    <DoubleAnimation To=".6" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter Property="RenderTransform" TargetName="ButtonBorder">
+                <Setter.Value>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                  </TransformGroup>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="Button" TargetType="{x:Type Button}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border x:Name="ButtonBorder" CornerRadius="0" BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+            <Border.Background>
+              <SolidColorBrush Color="{StaticResource ButtonBackground}" />
+            </Border.Background>
+            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"
+                              TextBlock.FontWeight="Bold" TextBlock.Foreground="Black" RecognizesAccessKey="True" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder"
+                                    To="{StaticResource ButtonBackgroundMouseOver}" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color" FillBehavior="Stop">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder" To="{StaticResource ButtonBackground}"
+                                    Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color" FillBehavior="Stop">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder"
+                                    To="{StaticResource ButtonBackgroundMouseDown}" Duration="0:0:0.1" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color" FillBehavior="Stop">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder" To="{StaticResource ButtonBackground}"
+                                    Duration="0:0:0.1" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="ButtonContentPresenter" Property="TextBlock.Foreground" Value="#99000000" />
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsDefault" Value="True" />
+                <Condition Property="IsEnabled" Value="True" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="ButtonContentPresenter" Property="TextBlock.Foreground" Value="White" />
+              <Setter TargetName="ButtonBorder" Property="Border.Background">
+                <Setter.Value>
+                  <SolidColorBrush Color="{StaticResource Colorizer}" />
+                </Setter.Value>
+              </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsDefault" Value="True" />
+                <Condition Property="IsMouseOver" Value="True" />
+              </MultiTrigger.Conditions>
+              <MultiTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder"
+                                    To="{StaticResource ButtonBackgroundMouseOverDefault}" Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.EnterActions>
+              <MultiTrigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color" FillBehavior="Stop">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder" To="{StaticResource Colorizer}"
+                                    Duration="0:0:0.2" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsDefault" Value="True" />
+                <Condition Property="IsPressed" Value="True" />
+              </MultiTrigger.Conditions>
+              <MultiTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder"
+                                    To="{StaticResource ButtonBackgroundMouseDownDefault}" Duration="0:0:0.1" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.EnterActions>
+              <MultiTrigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="Background.Color" FillBehavior="Stop">
+                    <ColorAnimation Storyboard.TargetName="ButtonBorder" To="{StaticResource Colorizer}"
+                                    Duration="0:0:0.1" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.ExitActions>
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ProgressBar" TargetType="{x:Type ProgressBar}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ProgressBar}">
+          <Border Height="10">
+            <Border.Background>
+              <SolidColorBrush Color="{StaticResource ColorizerTransparent}" />
+            </Border.Background>
+            <Grid x:Name="PART_Track">
+              <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left">
+                <Rectangle.Fill>
+                  <SolidColorBrush Color="{StaticResource Colorizer}" />
+                </Rectangle.Fill>
+              </Rectangle>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ToolTip" TargetType="{x:Type ToolTip}">
+    <Setter Property="Foreground">
+      <Setter.Value>
+        <SolidColorBrush Color="{StaticResource Text}" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="FontFamily" Value="Segoe UI" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontStyle" Value="Normal" />
+    <Setter Property="FontWeight" Value="DemiBold" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToolTip}">
+          <Border Background="White" BorderThickness="2" BorderBrush="{StaticResource WindowBorderBrush}" Padding="5"
+                  CornerRadius="0">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

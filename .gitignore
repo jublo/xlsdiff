@@ -1,0 +1,15 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+bin
+obj
+publish
+
+# JetBrains ReSharper
+_ReSharper.*
+*.DotSettings
+
+# mstest test results
+TestResults
+
+# private data
+*.suo
+signtool.cmd
